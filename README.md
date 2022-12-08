@@ -27,7 +27,8 @@ RESTORE_REPORT Restore Duration: 204.27 ms
 START RequestId: 2f98d5aa-c63b-41e8-a9d2-0d2c21d7410d Version: 2
 END RequestId: 2f98d5aa-c63b-41e8-a9d2-0d2c21d7410d
 REPORT RequestId: 2f98d5aa-c63b-41e8-a9d2-0d2c21d7410d
-Duration: 13.82 ms Billed Duration: 129 ms
+Duration: 13.82 ms
+Billed Duration: 129 ms
 Memory Size: 512 MB
 Max Memory Used: 71 MB
 Restore Duration: 204.27 ms
