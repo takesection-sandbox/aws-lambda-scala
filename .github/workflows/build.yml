@@ -1,0 +1,23 @@
+name: build
+
+on: [push]
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: "ap-northeast-3"
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11.0.12'
+          distribution: 'temurin'
+      - run: sbt assembly
+      - run: aws s3 cp target/scala-2.13/aws-lambda-scala.jar s3://${{ secrets.BUCKET_NAME }}/lambda/aws-lambda-scala.jar
