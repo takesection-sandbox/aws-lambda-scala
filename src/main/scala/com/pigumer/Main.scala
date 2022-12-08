@@ -1,10 +1,12 @@
+package com.pigumer
+
 import com.amazonaws.services.lambda.runtime.{Context, RequestStreamHandler}
 
 import java.io.{InputStream, OutputStream}
 import java.nio.charset.StandardCharsets
 import scala.util.Try
 
-trait Main extends RequestStreamHandler {
+class Main extends RequestStreamHandler {
 
   val sleep = Try(Thread.sleep(10000))
 
