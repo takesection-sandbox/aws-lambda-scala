@@ -1,17 +1,28 @@
 package com.pigumer
 
 import com.amazonaws.services.lambda.runtime.{Context, RequestStreamHandler}
+import org.crac
+import org.crac.Resource
 
 import java.io.{InputStream, OutputStream}
 import java.nio.charset.StandardCharsets
 import scala.util.Try
 
-class Main extends RequestStreamHandler {
+class Main extends RequestStreamHandler with Resource {
 
   val sleep = Try(Thread.sleep(10000))
 
   override def handleRequest(input: InputStream, output: OutputStream, context: Context): Unit = {
+    context.getLogger.log("handleRequest");
     output.write("\"Hello, World!\"".getBytes(StandardCharsets.UTF_8));
     output.flush();
+  }
+
+  override def beforeCheckpoint(context: crac.Context[_ <: Resource]): Unit = {
+    println("beforeCheckpoint");
+  }
+
+  override def afterRestore(context: crac.Context[_ <: Resource]): Unit = {
+    println("afterRestore");
   }
 }
