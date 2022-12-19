@@ -19,10 +19,10 @@ class Main extends RequestStreamHandler with Resource {
   }
 
   override def beforeCheckpoint(context: crac.Context[_ <: Resource]): Unit = {
-    println("beforeCheckpoint");
+    System.out.println("beforeCheckpoint");
   }
 
   override def afterRestore(context: crac.Context[_ <: Resource]): Unit = {
-    println("afterRestore");
+    System.out.println("afterRestore");
   }
 }
