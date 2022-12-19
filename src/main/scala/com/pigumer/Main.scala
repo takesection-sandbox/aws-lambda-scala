@@ -2,13 +2,15 @@ package com.pigumer
 
 import com.amazonaws.services.lambda.runtime.{Context, RequestStreamHandler}
 import org.crac
-import org.crac.Resource
+import org.crac.{Core, Resource}
 
 import java.io.{InputStream, OutputStream}
 import java.nio.charset.StandardCharsets
 import scala.util.Try
 
 class Main extends RequestStreamHandler with Resource {
+
+  Core.getGlobalContext.register(this);
 
   val sleep = Try(Thread.sleep(10000))
 
